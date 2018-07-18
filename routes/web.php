@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/times', 'TimeController@index')->name('index');
+Route::get('/times', 'TimeController@index')->name('index'); 
 
 //Route::match(['get', 'post'], '/times', function() {
 //    dd('ola mundo, metodo '.Request::method());
