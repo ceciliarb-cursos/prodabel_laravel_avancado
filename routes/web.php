@@ -17,14 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-<<<<<<< HEAD
 
 Route::middleware('auth')->group(function() {
     Route::get('/times/{id?}', 'TimeController@index');
 });
-=======
-Route::get('/times', 'TimeController@index')->name('index'); 
->>>>>>> 03f0297c5832a1757750f5b6f04cf7a32ef9c1c0
 
 //Route::match(['get', 'post'], '/times', function() {
 //    dd('ola mundo, metodo '.Request::method());
