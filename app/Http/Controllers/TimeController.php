@@ -37,13 +37,21 @@ class TimeController extends Controller
         }
         //$paginator = new LengthAwarePaginator();
         return view('times.index', ['times' => $result, 'pesquisa' => $request->nome ]);
+        return view('times.index')
+                ->with('times', $result)
+                ->with('pesquisa', $request->nome);
     }
 
-    public function form()
+    public function form(\App\Time $time)
     {
-        return view('times.form');
+        return view('times.form', ['time' => $time]);
     }
     
+    public function teste(\App\Time $time)
+    {
+        dd($time);
+    }
+
     public function index2()
     {
         return "access";

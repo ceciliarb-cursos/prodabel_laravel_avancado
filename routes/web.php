@@ -21,7 +21,7 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function() {
     Route::get('/times/{id?}', 'TimeController@index');
     Route::get('/times/nome/{nome?}', 'TimeController@index');
-    Route::get('/time/{id?}', 'TimeController@form');
+    Route::get('/time/{time?}', 'TimeController@form');
 });
 
 //Route::match(['get', 'post'], '/times', function() {

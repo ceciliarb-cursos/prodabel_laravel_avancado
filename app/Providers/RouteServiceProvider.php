@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Http\Response;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,14 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot();
+        //Route::model('time', \App\Time::class);
+        Route::model('figurinha', \App\Figurinha::class);
+
+        Route::bind('time', function ($value) {
+            return \App\Time::find($value) ??
+                   \App\Time::where('nome', 'like', $value.'%')->first() ?? 
+                   abort(401, 'Esse time nao existe!');
+        });
     }
 
     /**
