@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Home')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -14,7 +16,16 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <div class="links">
+                        <p>
+                            <a href="{{ url('/times') }}">Times</a>
+                        </p>
+                        <p>
+                            <a href="{{ url('/figurinhas') }}">Figurinhas</a>
+                        </p>
+
+                    </div>
+
                 </div>
             </div>
         </div>

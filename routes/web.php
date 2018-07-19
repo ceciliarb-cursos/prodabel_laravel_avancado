@@ -17,7 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/times', 'TimeController@index')->name('index'); 
+
+Route::middleware('auth')->group(function() {
+    Route::get('/times/{id?}', 'TimeController@index');
+});
 
 //Route::match(['get', 'post'], '/times', function() {
 //    dd('ola mundo, metodo '.Request::method());
@@ -29,3 +32,7 @@ Route::get('/times', 'TimeController@index')->name('index');
 
 //Route::options('/times', 'TimeController@index');
 //Route::match(['get', 'post'], '/', 'TimeController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

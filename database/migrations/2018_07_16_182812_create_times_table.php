@@ -16,8 +16,8 @@ class CreateTimesTable extends Migration
         Schema::create('times', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
-            $table->string('mascote');
-            $table->string('fundado_em');
+            $table->string('mascote')->nullable();
+            $table->string('fundado_em')->nullable();
             $table->timestamps();
         });
     }
