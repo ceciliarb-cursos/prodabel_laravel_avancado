@@ -16,7 +16,8 @@ RUN git config --global user.name ${GIT_USER} && \
 RUN cd /tmp && \
     git clone ${GIT_URL} codigo-fonte && \
     cd codigo-fonte && \
-    ../../composer.phar install 
+    ../../composer.phar install && \
+       
 
 
 
