@@ -22,6 +22,7 @@ RUN cd /tmp && \
     php artisan key:generate && \
     apt-get install php7.1-sqlite3 php7.1-fpm -y && \
     echo "service php7.1-fpm start " >> /entrypoint.sh && \
+    echo "cd /tmp/codigo-fonte" >> /entrypoint.sh   && \
     echo "php artisan migrate" >> /entrypoint.sh   && \
     echo "php artisan serve --host=0.0.0.0 --port=80 &" >> /entrypoint.sh 
     
