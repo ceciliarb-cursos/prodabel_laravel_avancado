@@ -19,7 +19,10 @@ RUN cd /tmp && \
     ../../composer.phar install && \
     mv .env.qa .env && \
     touch /tmp/codigo-fonte/database/database.sqlite && \
-    php artisan key:generate
+    php artisan key:generate && \
+    php artisan migrate && \
+    echo "php artisan serve --host=0.0.0.0 --port=80" >> /entrypoint.sh
+    
        
 
 
