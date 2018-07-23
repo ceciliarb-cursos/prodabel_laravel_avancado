@@ -20,8 +20,9 @@ RUN cd /tmp && \
     mv .env.qa .env && \
     touch /tmp/codigo-fonte/database/database.sqlite && \
     php artisan key:generate && \
-    #php artisan migrate && \
-    echo "php artisan serve --host=0.0.0.0 --port=80 &" >> /entrypoint.sh
+    sed -i 's/;extension=php_pdo_sqlite.dll/extension=php_pdo_sqlite.dll/g' /etc/php/7.1/apache2/php.ini && \
+    php artisan migrate && \
+    echo "php artisan serve --host=0.0.0.0 --port=80 &" >> /entrypoint.sh && \
     
        
 
