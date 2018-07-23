@@ -14,7 +14,8 @@ RUN git config --global user.name ${GIT_USER} && \
     git config --global http.sslVerify "false"
 
 RUN cd /tmp && \
-    git clone ${GIT_URL} codigo-fonte
+    git clone ${GIT_URL} codigo-fonte && \
+    ../../composer.phar install -y
 
 
 
