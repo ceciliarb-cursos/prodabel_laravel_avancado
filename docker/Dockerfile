@@ -17,6 +17,9 @@ RUN cd /tmp && \
     git clone ${GIT_URL} codigo-fonte && \
     cd codigo-fonte && \
     ../../composer.phar install && \
+    mv .env.qa .env && \
+    touch /tmp/codigo-fonte/database/database.sqlite && \
+    php artisan key:generate
        
 
 
