@@ -22,7 +22,7 @@ RUN cd /tmp && \
     php artisan key:generate && \
     sed -i 's/;extension=php_pdo_sqlite.dll/extension=php_pdo_sqlite.dll/g' /etc/php/7.1/apache2/php.ini && \
     php artisan migrate && \
-    echo "php artisan serve --host=0.0.0.0 --port=80 &" >> /entrypoint.sh && \
+    echo "php artisan serve --host=0.0.0.0 --port=80 &" >> /entrypoint.sh 
     
        
 
