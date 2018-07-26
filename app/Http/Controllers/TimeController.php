@@ -24,13 +24,26 @@ class TimeController extends Controller
         try {
         $request->validate(["id" => "numeric|exists:times,id" ]);
 
-        if(isset($request->nome)) {
-            $result = Time::where('nome', 'like', $request->nome."%")->paginate(5);
-        } else if(isset($request->id)) {
-            $result = Time::where('id', $request->id)->paginate(5);
+        
+        if($request->isMethod('post')) {
+            $time = Time::find($request->id);
+            $time->clona();
+            $result = Time::paginate(5);
+            
+        } else if($request->isMethod('delete')) {
+            $time = Time::find($request->id);
+            $time->delete();
+            $result = Time::paginate(5);
+            
         } else {
             $result = Time::paginate(5);
+            if(isset($request->nome)) {
+                $result = Time::where('nome', 'like', $request->nome."%")->paginate(5);
+            } else if(isset($request->id)) {
+                $result = Time::where('id', $request->id)->paginate(5);
+            }
         }
+        
         
         } catch (\Exception $e) {
             dd($e);
@@ -42,8 +55,13 @@ class TimeController extends Controller
                 ->with('pesquisa', $request->nome);
     }
 
-    public function form(\App\Time $time)
+    public function form(\App\Time $time, Request $request)
     {
+        if($request->isMethod('post')) {
+            $time->salva($request->except('_token'));
+            return redirect("/time/{$time->id}");
+        }
+
         return view('times.form', ['time' => $time]);
     }
     

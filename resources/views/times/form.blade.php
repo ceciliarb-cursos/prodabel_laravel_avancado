@@ -11,6 +11,8 @@
 
                 <div class="card-body">
                     <form method="POST">
+                        @csrf
+
                         <div class="row">
                             <div class="col-2">
                                 <label for="nome">Nome:</label>
@@ -20,6 +22,7 @@
                                        name="nome" 
                                        id="nome" 
                                        value="{{ $time->nome }}"
+                                       required
                                        class="form-control">
                             </div>
                         </div>
