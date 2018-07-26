@@ -22,19 +22,34 @@ class TimeController extends Controller
     {
         $result = null;
         try {
-        $request->validate([
-            "id" => "numeric|exists:times,id"
-            ]);
-            if(isset($request->id)) 
-            $result = Time::where('id', $request->id)->get();
-            else 
+        $request->validate(["id" => "numeric|exists:times,id" ]);
+
+        if(isset($request->nome)) {
+            $result = Time::where('nome', 'like', $request->nome."%")->paginate(5);
+        } else if(isset($request->id)) {
+            $result = Time::where('id', $request->id)->paginate(5);
+        } else {
             $result = Time::paginate(5);
-            
+        }
+        
         } catch (\Exception $e) {
             dd($e);
         }
         //$paginator = new LengthAwarePaginator();
-        return view('times.index', ['times' => $result]);
+        return view('times.index', ['times' => $result, 'pesquisa' => $request->nome ]);
+        return view('times.index')
+                ->with('times', $result)
+                ->with('pesquisa', $request->nome);
+    }
+
+    public function form(\App\Time $time)
+    {
+        return view('times.form', ['time' => $time]);
+    }
+    
+    public function teste(\App\Time $time)
+    {
+        dd($time);
     }
 
     public function index2()
