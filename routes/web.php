@@ -24,6 +24,8 @@ Route::middleware('auth')->group(function() {
     Route::get('/time/{time?}', 'TimeController@form');
 });
 
+Route::get('/lista', 'TimeController@lista');
+
 //Route::match(['get', 'post'], '/times', function() {
 //    dd('ola mundo, metodo '.Request::method());
 //});

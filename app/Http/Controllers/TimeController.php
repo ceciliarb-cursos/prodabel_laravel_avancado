@@ -17,7 +17,7 @@ class TimeController extends Controller
     {
         //$this->middleware('auth');
     }
-    
+
     public function index(Request $request)
     {
         $result = null;
@@ -31,7 +31,7 @@ class TimeController extends Controller
         } else {
             $result = Time::paginate(5);
         }
-        
+
         } catch (\Exception $e) {
             dd($e);
         }
@@ -46,10 +46,10 @@ class TimeController extends Controller
     {
         return view('times.form', ['time' => $time]);
     }
-    
-    public function teste(\App\Time $time)
+
+    public function lista()
     {
-        dd($time);
+        return Time::get();
     }
 
     public function index2()
