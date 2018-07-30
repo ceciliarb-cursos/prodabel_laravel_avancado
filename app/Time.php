@@ -14,9 +14,23 @@ class Time extends Model
     const UPDATED_AT = 'updated_at';
     protected $connection = 'sqlite';
 
+    protected $fillable = ['nome', 'mascote', 'fundado_em'];
+
     public function getRouteKeyName()
     {
-        return 'id';
+        return 'id_diferente';
+    }
+
+    public function salva($time)
+    {
+        $this->fill($time);
+        return $this->save();
+    }
+
+    public function clona()
+    {
+        $time = $this->replicate();
+        return $time->save();
     }
 
 }

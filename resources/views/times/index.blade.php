@@ -11,11 +11,14 @@
     
                     <div class="card-body">
                         <div class="pb-3">
-                            <form action="" method="get">
+                            <form action="" method="get" name="form">
                                 <div class="row">
                                     <div class="col-sm-2"><label for="nome">Nome:</label></div>
                                     <div class="col"><input type="text" name="nome" id="nome" class="form-control" value="{{ $pesquisa }}"></div>
                                     <div class="col-sm-3"><input type="submit" value="Pesquisar" class="btn btn-primary"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col"><a href="{{route('time')}}">Inserir novo >></a></div>
                                 </div>
                             </form>
                         </div>
@@ -26,6 +29,7 @@
                                     <th>Nome</th>
                                     <th>Mascote</th>
                                     <th>Fundado em</th>
+                                    <th>Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -35,6 +39,25 @@
                                         <td><a href="{{ url('time/'.$time->id) }}"> {{ $time->nome }} </a></td>
                                         <td>{{ $time->mascote }}</td>
                                         <td>{{ $time->fundado_em }}</td>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <form method="POST" action="">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <input type="hidden" value="{{$time->id}}" name="id">
+                                                        <button type="submit" title="Remover Time"><i class="fas fa-trash"></i></button>
+                                                    </form>
+                                                </div>
+                                                <div class="col">
+                                                    <form method="POST" action="">
+                                                        @csrf
+                                                        <input type="hidden" value="{{$time->id}}" name="id">
+                                                        <button type="submit" title="Clonar Time"><i class="fas fa-copy"></i></button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                     @empty
                                     <tr>

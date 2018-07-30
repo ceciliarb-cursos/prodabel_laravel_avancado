@@ -19,9 +19,15 @@ Route::get('/', function () {
 
 
 Route::middleware('auth')->group(function() {
-    Route::get('/times/{id?}', 'TimeController@index');
-    Route::get('/times/nome/{nome?}', 'TimeController@index');
-    Route::get('/time/{time?}', 'TimeController@form');
+    Route::match(['get', 'post', 'delete'], 
+                 '/times/{id?}', 
+                 'TimeController@index');
+    //Route::get('/times/nome/{nome?}', 'TimeController@index');
+    //Route::get('/time/{time?}', 'TimeController@form');
+    //Route::post('/time/{time?}', 'TimeController@form');
+    Route::match(['get', 'post'], '/time/{time?}', 'TimeController@form')->name('time');
+    
+    Route::any('/time/{time?}', 'TimeController@form');
 });
 
 Route::get('/lista', 'TimeController@lista');
